@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewsArticles: Decodable {
-    var articles: [Article]
+    var articles: [Article] = []
 }
 
 struct Article: Decodable {
@@ -18,7 +18,7 @@ struct Article: Decodable {
     var url: String
     var urlToImage: String
     var publishedAt: String
-    var source: Source?
+    var source: Source
 }
 
 struct Source: Decodable {
@@ -26,23 +26,35 @@ struct Source: Decodable {
 }
 
 struct ContentView: View {
+    @State var news: [Article] = []
     var body: some View {
-        Button("Get") {
-            guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=51ea6b34f2be4e8b819ba235b717cf44") else { return }
-            URLSession.shared.dataTask(with: url) { (data, _, error ) in
-                
-                guard let data = data else { return }
-                
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    let jsonT = try JSONDecoder().decode(NewsArticles.self, from: data)
-                    print(jsonT)
-                    //print(json)
-                } catch {
-                    print(error)
+        HStack {
+            List(news, id: \.self.description) { (post) in
+                Text(post.title)
+            }.onAppear() {
+                Api().getNews {
+                    (news) in self.news = news
                 }
-            }.resume()
+            }
         }
+    }
+}
+
+struct Api {
+    func getNews(completion: @escaping ([Article]) -> ()) {
+        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=51ea6b34f2be4e8b819ba235b717cf44") else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, error ) in
+            guard let data = data else { return }
+            do {
+                let jsonT = try JSONDecoder().decode(NewsArticles.self, from: data)
+                let v: NewsArticles = jsonT
+                DispatchQueue.main.async {
+                    completion(v.articles)
+                }
+            } catch {
+                print(error)
+            }
+        }.resume()
     }
 }
 
