@@ -7,6 +7,7 @@ target 'NewsSwiftUI' do
 
   # Pods for NewsSwiftUI
   pod 'Alamofire', '~> 5.2'
+  pod 'Kingfisher', '~> 6.0'
   
   target 'NewsSwiftUITests' do
     inherit! :search_paths

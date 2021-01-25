@@ -7,7 +7,7 @@
 
 import SafariServices
 import SwiftUI
-
+import Kingfisher
 
 struct InfoView: View {
     @State var news: [Article] = []
@@ -17,13 +17,14 @@ struct InfoView: View {
         List(news, id: \.self.description) { (post) in
             VStack {
                 SafariButton(content: VStack{
-                    AsyncImage(url: URL(string: post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg")!,
-                                 placeholder: { Text("Loading ...") },
-                                 image: { Image(uiImage: $0).resizable() })
-                        .aspectRatio(contentMode: .fit)
-                        .frame(idealHeight: UIScreen.main.bounds.width / 2)
-                    Text(post.title ?? "no info").font(.system(size: 16)).padding(1).frame(width: UIScreen.main.bounds.width / 1.2, alignment: .trailing)
-                    Text(post.description ?? "no info").font(.system(size: 10)).frame(width: UIScreen.main.bounds.width / 1.2, alignment: .trailing)
+                    KFImage(URL(string: post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg")!)
+                            .loadDiskFileSynchronously()
+                            .cacheMemoryOnly()
+                            .resizable()
+                        .frame(idealHeight: 140)
+                                  
+                    Text(post.title ?? "no info").font(.system(size: 16)).padding(1).frame(width: UIScreen.main.bounds.width / 1.2, alignment: .leading)
+                    Text(post.description ?? "no info").font(.system(size: 10)).frame(width: UIScreen.main.bounds.width / 1.2, alignment: .leading)
                     Text(transformDate(dateP: post.publishedAt ?? "no info")).font(.system(size: 13)).padding()
                 }, url: post.url ?? "no info")
             }
