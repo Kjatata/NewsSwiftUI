@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  AppView.swift
 //  NewsSwiftUI
 //
 //  Created by User on 21.01.21.
@@ -7,23 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
-    var body: some View {
-        VStack {
-            Home()
-            
-        }
-    }
+class AppParams: ObservableObject {
+    @Published var selectedCountry = countries[countries.firstIndex(where: {$0.shortName == Locale.autoupdatingCurrent.regionCode?.lowercased()}) ?? 0].shortName
+    @Published var selectedCategory = "business"
+    @Published var searchTypePage = "Top Headlines"
+    @Published var q = "Apple"
 }
 
-struct Home: View {
-    var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-    @State var edges = UIApplication.shared.windows.first?.safeAreaInsets
-    @State var width = UIScreen.main.bounds.width
+struct AppView: View {
     @State var show = false
     @State var selectedPage = "News"
-        
+    @ObservedObject private var params = AppParams()
+    
     var body: some View {
         ZStack {
             VStack {
@@ -38,23 +33,38 @@ struct Home: View {
                             Image(systemName: "line.horizontal.3")
                                 .font(.system(size:22))
                                 .foregroundColor(.black)
+                                .padding(.top)
                         })
                     }
                     Text("Home")
                         .font(.title2)
                         .fontWeight(.semibold)
+                        .padding(.top)
                     
                 }.padding()
-                .padding(.top,edges!.top)
                 .background(Color.white)
                 .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
                 Spacer(minLength: 0)
-                if(selectedPage == "News") {
-                    Info()
+                switch(selectedPage) {
+                case "News" : InfoView(type: params.searchTypePage)
+                case "Search" :
+                    if(params.searchTypePage == "Top Headlines") {
+                        HeadLinesParamsView()
+                    } else {
+                        EverythingParamsView()
+                    }
+                    Spacer()
+                    Button(action: {
+                        params.searchTypePage = params.searchTypePage == "Top Headlines" ? "Everything" : "Top Headlines"
+                    }) {
+                        Text("Switch from \(params.searchTypePage)")
+                    }.padding()
+                default:
+                    InfoView(type: params.searchTypePage)
                 }
                 Spacer(minLength: 0)
             }
-            
+            .environmentObject(params)
             HStack(spacing: 0) {
                 Spacer(minLength: 0)
                 VStack {
@@ -68,62 +78,27 @@ struct Home: View {
                             Image(systemName: "xmark")
                                 .font(.system(size: 22, weight: .bold))
                                 .foregroundColor(.white)
+                                .padding(.top)
                         })
                     }.padding()
-                    .padding(.top, edges!.top)
                     
                     VStack(alignment: .leading, content: {
-                        MenuButtons(image: "info", title: "News", selected: $selectedPage, show: $show)
-                        MenuButtons(image: "book", title: "Search", selected: $selectedPage, show: $show)
-                        MenuButtons(image: "gear", title: "Settings", selected: $selectedPage, show: $show)
-                        MenuButtons(image: "note", title: "Notes", selected: $selectedPage, show: $show)
+                        MenuButtonView(image: "info", title: "News", selected: $selectedPage, show: $show)
+                        MenuButtonView(image: "book", title: "Search", selected: $selectedPage, show: $show)
+                        MenuButtonView(image: "gear", title: "Settings", selected: $selectedPage, show: $show)
+                        MenuButtonView(image: "note", title: "Notes", selected: $selectedPage, show: $show)
                     })
                     .padding(.top)
                     .padding(.leading, 40)
                     Spacer(minLength: 0)
-                }.frame(width: width - 100)
+                }.frame(width: UIScreen.main.bounds.width - 100)
                 .background(Color.orange)
-                .offset(x: show ? 0 : width - 100)
+                .offset(x: show ? 0 : UIScreen.main.bounds.width - 100)
             }
             .background(Color.black.opacity(show ? 0.3 : 0))
         }
         .ignoresSafeArea(.all, edges: .all)
         
     }
-}
-
-struct MenuButtons: View {
-    var image : String
-    var title : String
-    @Binding var selected: String
-    @Binding var show: Bool
     
-    var body: some View {
-        Button(action: {
-            withAnimation(.spring()) {
-                selected = title
-                show.toggle()
-            }
-        }) {
-            HStack(spacing: 15) {
-                Image(systemName: image)
-                    .font(.system(size: 22))
-                
-                Text(title)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-            }
-            .padding(.vertical)
-            .padding(.trailing)
-        }
-        .padding(-10)
-        .foregroundColor(.white)
-    }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
