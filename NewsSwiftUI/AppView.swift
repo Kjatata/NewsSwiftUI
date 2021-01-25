@@ -8,10 +8,14 @@
 import SwiftUI
 
 class AppParams: ObservableObject {
-    @Published var selectedCountry = countries[countries.firstIndex(where: {$0.shortName == Locale.autoupdatingCurrent.regionCode?.lowercased()}) ?? 0].shortName
-    @Published var selectedCategory = "business"
+    @Published var country = countries[countries.firstIndex(where: {$0.shortName == Locale.autoupdatingCurrent.regionCode?.lowercased()}) ?? 0].shortName
+    @Published var category = "business"
     @Published var searchTypePage = "Top Headlines"
     @Published var q = "Apple"
+    @Published var sourse = "abc-news"
+    @Published var selectedSource = 0
+    @Published var selectedCategory = 0
+    @Published var selectedCountry = countries.firstIndex(where: {$0.shortName == Locale.autoupdatingCurrent.regionCode?.lowercased()}) ?? 0
 }
 
 struct AppView: View {
@@ -46,12 +50,12 @@ struct AppView: View {
                 .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
                 Spacer(minLength: 0)
                 switch(selectedPage) {
-                case "News" : InfoView(type: params.searchTypePage)
+                case "News" : NewsView(type: params.searchTypePage)
                 case "Search" :
                     if(params.searchTypePage == "Top Headlines") {
-                        HeadLinesParamsView()
+                        HeadLinesParamsView(selectedCountry: $params.selectedCountry, selectedCategory: $params.selectedCategory)
                     } else {
-                        EverythingParamsView()
+                        EverythingParamsView(selectedSource: $params.selectedSource)
                     }
                     Spacer()
                     Button(action: {
@@ -60,7 +64,7 @@ struct AppView: View {
                         Text("Switch from \(params.searchTypePage)")
                     }.padding()
                 default:
-                    InfoView(type: params.searchTypePage)
+                    NewsView(type: params.searchTypePage)
                 }
                 Spacer(minLength: 0)
             }

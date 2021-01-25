@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		01F83C424C97C2D34C6A30E2 /* Pods_NewsSwiftUI_NewsSwiftUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E6CAAE335091EF90C25466 /* Pods_NewsSwiftUI_NewsSwiftUIUITests.framework */; };
 		79E874E9B4EF3FA9D6620D0E /* Pods_NewsSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60839792E5D9007CFF9E833 /* Pods_NewsSwiftUI.framework */; };
-		CE07405B25BC518900CB5135 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07405A25BC518900CB5135 /* InfoView.swift */; };
+		CE07405B25BC518900CB5135 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07405A25BC518900CB5135 /* NewsView.swift */; };
 		CE07407925BC686600CB5135 /* HeadLinesParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07407825BC686600CB5135 /* HeadLinesParamsView.swift */; };
 		CE0C9AB625BEFC7800EF4F6F /* EverythingParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C9AB525BEFC7800EF4F6F /* EverythingParamsView.swift */; };
 		CE4EC19B25B9722800A441CC /* NewsSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4EC19A25B9722800A441CC /* NewsSwiftUIApp.swift */; };
-		CE4EC19D25B9722800A441CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4EC19C25B9722800A441CC /* ContentView.swift */; };
+		CE4EC19D25B9722800A441CC /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4EC19C25B9722800A441CC /* AppView.swift */; };
 		CE4EC19F25B9722900A441CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4EC19E25B9722900A441CC /* Assets.xcassets */; };
 		CE4EC1A225B9722900A441CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4EC1A125B9722900A441CC /* Preview Assets.xcassets */; };
 		CE4EC1AD25B9722900A441CC /* NewsSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4EC1AC25B9722900A441CC /* NewsSwiftUITests.swift */; };
@@ -49,13 +49,13 @@
 		7CBB3084F70968C4652CA16C /* Pods-NewsSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-NewsSwiftUITests/Pods-NewsSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C421E423AD24C16E1BC1E0E2 /* Pods-NewsSwiftUI-NewsSwiftUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsSwiftUI-NewsSwiftUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-NewsSwiftUI-NewsSwiftUIUITests/Pods-NewsSwiftUI-NewsSwiftUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD8A1B3C298289FA71F5FEBA /* Pods_NewsSwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsSwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE07405A25BC518900CB5135 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		CE07405A25BC518900CB5135 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		CE07407825BC686600CB5135 /* HeadLinesParamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadLinesParamsView.swift; sourceTree = "<group>"; };
 		CE0C9AB525BEFC7800EF4F6F /* EverythingParamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverythingParamsView.swift; sourceTree = "<group>"; };
 		CE34F27B838865A08ED4BB68 /* Pods-NewsSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-NewsSwiftUI/Pods-NewsSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		CE4EC19725B9722800A441CC /* NewsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4EC19A25B9722800A441CC /* NewsSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSwiftUIApp.swift; sourceTree = "<group>"; };
-		CE4EC19C25B9722800A441CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CE4EC19C25B9722800A441CC /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		CE4EC19E25B9722900A441CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE4EC1A125B9722900A441CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE4EC1A325B9722900A441CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,11 +148,11 @@
 			isa = PBXGroup;
 			children = (
 				CE4EC19A25B9722800A441CC /* NewsSwiftUIApp.swift */,
-				CE4EC19C25B9722800A441CC /* ContentView.swift */,
+				CE4EC19C25B9722800A441CC /* AppView.swift */,
 				CEAF1F6425BD87AD007FA8FC /* MenuButtonView.swift */,
 				CE07407825BC686600CB5135 /* HeadLinesParamsView.swift */,
 				CE0C9AB525BEFC7800EF4F6F /* EverythingParamsView.swift */,
-				CE07405A25BC518900CB5135 /* InfoView.swift */,
+				CE07405A25BC518900CB5135 /* NewsView.swift */,
 				CEAF1F5F25BD86A8007FA8FC /* utils.swift */,
 				CEAF1F5725BD85FD007FA8FC /* SafariButton.swift */,
 				CE4EC19E25B9722900A441CC /* Assets.xcassets */,
@@ -426,9 +426,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEAF1F6025BD86A8007FA8FC /* utils.swift in Sources */,
-				CE07405B25BC518900CB5135 /* InfoView.swift in Sources */,
+				CE07405B25BC518900CB5135 /* NewsView.swift in Sources */,
 				CE07407925BC686600CB5135 /* HeadLinesParamsView.swift in Sources */,
-				CE4EC19D25B9722800A441CC /* ContentView.swift in Sources */,
+				CE4EC19D25B9722800A441CC /* AppView.swift in Sources */,
 				CE4EC19B25B9722800A441CC /* NewsSwiftUIApp.swift in Sources */,
 				CE0C9AB625BEFC7800EF4F6F /* EverythingParamsView.swift in Sources */,
 				CEAF1F5825BD85FD007FA8FC /* SafariButton.swift in Sources */,

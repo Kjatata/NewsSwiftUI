@@ -80,8 +80,8 @@ let categories = [
 ]
 
 struct HeadLinesParamsView: View {
-    @State private var selectedCountry = countries.firstIndex(where: {$0.shortName == Locale.autoupdatingCurrent.regionCode?.lowercased()}) ?? 0
-    @State private var selectedCategory = 0
+    @Binding var selectedCountry: Int
+    @Binding var selectedCategory: Int
     @EnvironmentObject var params: AppParams
     
     var body: some View {
@@ -96,7 +96,8 @@ struct HeadLinesParamsView: View {
                 }
             }
             .onChange(of: selectedCountry) { _ in
-                self.params.selectedCountry = countries[selectedCountry].shortName
+                self.params.country = countries[selectedCountry].shortName
+                self.params.selectedCountry = selectedCountry
             }
             .frame(height: 50)
             .clipped()
@@ -110,7 +111,8 @@ struct HeadLinesParamsView: View {
                 }
             }
             .onChange(of: selectedCategory) { _ in
-                self.params.selectedCategory = categories[selectedCategory]
+                self.params.category = categories[selectedCategory]
+                self.params.selectedCategory = selectedCategory
             }
             .frame(height: 50)
             .clipped()

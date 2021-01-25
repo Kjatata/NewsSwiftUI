@@ -1,5 +1,5 @@
 //
-//  InfoView.swift
+//  NewsView.swift
 //  NewsSwiftUI
 //
 //  Created by User on 23.01.21.
@@ -9,7 +9,7 @@ import SafariServices
 import SwiftUI
 import Kingfisher
 
-struct InfoView: View {
+struct NewsView: View {
     @State var news: [Article] = []
     @EnvironmentObject var params: AppParams
     var type: String
@@ -30,11 +30,11 @@ struct InfoView: View {
             }
         }.onAppear() {
             if(type == "Top Headlines") {
-                getNews(url: "https://newsapi.org/v2/top-headlines?country=\(params.selectedCountry)&category=\(params.selectedCategory)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
+                getNews(url: "https://newsapi.org/v2/top-headlines?country=\(params.country)&category=\(params.category)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
                     (news) in self.news = news
                 }
             } else {
-                getNews(url: "https://newsapi.org/v2/everything?q=\(params.q)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
+                getNews(url: "https://newsapi.org/v2/everything?q=\(params.q)&sources=\(params.sourse)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
                     (news) in self.news = news
                 }
             }
