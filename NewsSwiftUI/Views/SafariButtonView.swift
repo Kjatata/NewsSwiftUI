@@ -1,5 +1,5 @@
 //
-//  SafariButton.swift
+//  SafariButtonView.swift
 //  NewsSwiftUI
 //
 //  Created by User on 24.01.21.
@@ -8,7 +8,7 @@
 import SafariServices
 import SwiftUI
 
-struct SafariButton<Content: View>: View {
+struct SafariButtonView<Content: View>: View {
     var content: Content
     var url: String
     

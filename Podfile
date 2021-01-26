@@ -6,8 +6,8 @@ target 'NewsSwiftUI' do
   use_frameworks!
 
   # Pods for NewsSwiftUI
-  pod 'Alamofire', '~> 5.2'
   pod 'Kingfisher', '~> 6.0'
+  pod 'RealmSwift'
   
   target 'NewsSwiftUITests' do
     inherit! :search_paths

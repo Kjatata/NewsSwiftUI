@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-
+import RealmSwift
 class AppParams: ObservableObject {
     @Published var country = countries[countries.firstIndex(where: {$0.shortName == Locale.autoupdatingCurrent.regionCode?.lowercased()}) ?? 0].shortName
     @Published var category = "business"
     @Published var searchTypePage = "Top Headlines"
-    @Published var q = "Apple"
+    @Published var q = ""
     @Published var sourse = "abc-news"
     @Published var selectedSource = 0
     @Published var selectedCategory = 0
@@ -40,7 +40,7 @@ struct AppView: View {
                                 .padding(.top)
                         })
                     }
-                    Text("Home")
+                    Text(selectedPage)
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding(.top)
@@ -63,6 +63,14 @@ struct AppView: View {
                     }) {
                         Text("Switch from \(params.searchTypePage)")
                     }.padding()
+                    .font(.system(size: 14))
+                    .frame(height: 30)
+                    .foregroundColor(.black)
+                    .clipped()
+                    .cornerRadius(6.5)
+                    Spacer(minLength: 5)
+                case "Notes":
+                    NotesView()
                 default:
                     NewsView(type: params.searchTypePage)
                 }
