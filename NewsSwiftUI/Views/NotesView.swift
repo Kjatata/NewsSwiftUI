@@ -13,6 +13,7 @@ import RealmSwift
 struct NotesView: View {
     @State private var showAlert = false
     @StateObject private var modelData = DBViewModel()
+    @State private var showShareSheet = false
     var body: some View {
         ScrollView {
             VStack {
@@ -30,23 +31,28 @@ struct NotesView: View {
                             Text(note.publishedAt).font(.system(size: 13)).padding()
                         }, url: note.url).frame(height: 335)
                         Spacer()
-                        Button(action: {
-                            showAlert = true
-                            modelData.deleteData(object: note)
-                        }) {
-                            Text("TAP HERE TO REMOVE THAT NOTE")
-                                .font(.system(size: 16))
-                                .foregroundColor(.red)
-                                .frame(width: 335, alignment: .leading)
-                        }.alert(isPresented: $showAlert) {
-                            Alert(title: Text("Note Deleted"))
-                        }
-                        .rotationEffect(Angle(degrees: 90))
-                        .padding(.horizontal, -160)
+                        ButtonSideView(funct: {() -> () in
+                                        showAlert = true
+                                        modelData.deleteData(object: note)},
+                                       color: .red,
+                                       text: "TAP HERE TO REMOVE THAT NOTE")
+                        ButtonSideView(funct: showSheet,
+                                       color: .blue,
+                                       text: "TAP HERE SHARE THAT NOTES")
+                            .sheet(isPresented: $showShareSheet) {
+                                ShareSheet(activityItems: [note.url])
+                            }
                     }.buttonStyle(PlainButtonStyle())
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Note Deleted"))
+                    }
                 }.padding()
-            }
+            }.padding()
         }
+    }
+    
+    func showSheet(){
+        self.showShareSheet = true
     }
 }
 

@@ -37,4 +37,18 @@ class DBViewModel: ObservableObject {
             fetchData()
         }
     }
+    
+    func isSame(object1: DataType, object2: DataType) -> Bool {
+        return object1.title == object2.title &&
+            object1.publishedAt == object2.publishedAt &&
+            object1.Objdescription == object2.Objdescription &&
+            object1.url == object2.url &&
+            object1.urlToImage == object2.urlToImage
+    }
+    
+    func haveSameObj(object: DataType) -> Bool {
+        guard let dbRef = try? Realm() else { return false }
+        let results = dbRef.objects(DataType.self)
+        return results.first(where: {isSame(object1: $0, object2: object)}) != nil ? true : false
+    }
 }

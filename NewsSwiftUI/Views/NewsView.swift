@@ -13,6 +13,8 @@ import RealmSwift
 struct NewsView: View {
     @State var news: [Article] = []
     @State private var showAlert = false
+    @State private var alertText = "Note Added"
+    @State private var showShareSheet = false
     @EnvironmentObject var params: AppParams
     var type: String
     var body: some View {
@@ -29,29 +31,22 @@ struct NewsView: View {
                     Text(post.description ?? "no info").font(.system(size: 10))
                     Text(transformDate(dateP: post.publishedAt ?? "no info")).font(.system(size: 13)).padding()
                 }, url: post.url ?? "no info").frame(height: 335)
-                Spacer()
-                Button(action: {
-                    showAlert = true
-                    let newdata = DataType()
-                    newdata.urlToImage = post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg"
-                    newdata.title = post.title ?? "no info"
-                    newdata.Objdescription = post.description ?? "no info"
-                    newdata.publishedAt = transformDate(dateP: post.publishedAt ?? "no info")
-                    newdata.url = post.url ?? "https://itransition.by"
-                    DBViewModel().addData(object: newdata)
-                }) {
-                    Text("TAP HERE TO ADD IN YOUR NOTES")
-                        .font(.system(size: 16))
-                        .foregroundColor(.red)
-                        .frame(width: 335, alignment: .leading)
-                }.alert(isPresented: $showAlert) {
-                    Alert(title: Text("Note Added"))
-                }
-                .rotationEffect(Angle(degrees: 90))
-                .padding(.horizontal, -160)
                 
+                Spacer()
+                ButtonSideView(funct: {() -> () in addData(post: post)},
+                               color: .orange,
+                               text: "TAP HERE TO ADD IN U NOTES")
+                ButtonSideView(funct: showSheet,
+                               color: .green,
+                               text: "TAP HERE SHARE THAT NOTES")
+                    .sheet(isPresented: $showShareSheet) {
+                        ShareSheet(activityItems: [post.url ?? "no url"])
+                    }
 
             }.buttonStyle(PlainButtonStyle())
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text(self.alertText))
+            }
 
         }.onAppear() {
             if(type == "Top Headlines") {
@@ -70,5 +65,25 @@ struct NewsView: View {
                 }
             }
         }.padding()
+    }
+    
+    func showSheet(){
+        self.showShareSheet = true
+    }
+    
+    func addData(post: Article){
+        let newdata = DataType()
+        newdata.urlToImage = post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg"
+        newdata.title = post.title ?? "no info"
+        newdata.Objdescription = post.description ?? "no info"
+        newdata.publishedAt = transformDate(dateP: post.publishedAt ?? "no info")
+        newdata.url = post.url ?? "https://itransition.by"
+        if(!DBViewModel().haveSameObj(object: newdata)) {
+            showAlert = true
+            DBViewModel().addData(object: newdata)
+        } else {
+            self.alertText = "This note was added earlier"
+            showAlert = true
+        }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct OnboardingView: View {
     @State private var showOnBoarding = false
@@ -13,7 +14,7 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             ZStack {
-                AppView()
+                ApplicationView()
             }
             .edgesIgnoringSafeArea(.bottom)
             .disabled(showOnBoarding)
