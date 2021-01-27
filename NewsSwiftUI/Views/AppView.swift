@@ -53,9 +53,9 @@ struct AppView: View {
                 case "News" : NewsView(type: params.searchTypePage)
                 case "Search" :
                     if(params.searchTypePage == "Top Headlines") {
-                        HeadLinesParamsView(selectedCountry: $params.selectedCountry, selectedCategory: $params.selectedCategory)
+                        ParamsHeadLinesView(selectedCountry: $params.selectedCountry, selectedCategory: $params.selectedCategory)
                     } else {
-                        EverythingParamsView(selectedSource: $params.selectedSource)
+                        ParamsEverythingView(selectedSource: $params.selectedSource)
                     }
                     Spacer()
                     Button(action: {
@@ -95,9 +95,9 @@ struct AppView: View {
                     }.padding()
                     
                     VStack(alignment: .leading, content: {
-                        MenuButtonView(image: "info", title: "News", selected: $selectedPage, show: $show)
-                        MenuButtonView(image: "book", title: "Search", selected: $selectedPage, show: $show)
-                        MenuButtonView(image: "note", title: "Notes", selected: $selectedPage, show: $show)
+                        ButtonMenuView(image: "info", title: "News", selected: $selectedPage, show: $show)
+                        ButtonMenuView(image: "book", title: "Search", selected: $selectedPage, show: $show)
+                        ButtonMenuView(image: "note", title: "Notes", selected: $selectedPage, show: $show)
                     })
                     .padding(.top)
                     .padding(.leading, 40)

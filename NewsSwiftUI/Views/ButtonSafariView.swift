@@ -8,7 +8,7 @@
 import SafariServices
 import SwiftUI
 
-struct SafariButtonView<Content: View>: View {
+struct ButtonSafariView<Content: View>: View {
     var content: Content
     var url: String
     

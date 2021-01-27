@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuButtonView: View {
+struct ButtonMenuView: View {
     var image : String
     var title : String
     @Binding var selected: String

@@ -18,7 +18,7 @@ struct NotesView: View {
             VStack {
                 ForEach(modelData.notes) { note in
                     HStack {
-                        SafariButtonView(content: VStack{
+                        ButtonSafariView(content: VStack{
                             KFImage(URL(string: note.urlToImage)!)
                                     .loadDiskFileSynchronously()
                                     .cacheMemoryOnly()

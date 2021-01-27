@@ -18,7 +18,7 @@ struct NewsView: View {
     var body: some View {
         List(news, id: \.self.description) { (post) in
             HStack {
-                SafariButtonView(content: VStack{
+                ButtonSafariView(content: VStack{
                     KFImage(URL(string: post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg")!)
                             .loadDiskFileSynchronously()
                             .cacheMemoryOnly()

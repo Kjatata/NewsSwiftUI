@@ -17,7 +17,7 @@ struct OnBoardingImagesView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height - 90)
-                            Image("img\(item + 1)")
+                            Image("img\(item)")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width - 80, height: UIScreen.main.bounds.height - 150)
                             Button(action: {
@@ -25,7 +25,7 @@ struct OnBoardingImagesView: View {
                             }, label: {
                                 Image(systemName: "xmark")
                                     .font(.system(size: 20, weight: .bold))
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.orange)
                                     .padding(.leading,  UIScreen.main.bounds.width - 80)
                             }).padding(.bottom, UIScreen.main.bounds.height - 120)
                         }

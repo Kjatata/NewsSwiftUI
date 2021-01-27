@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EverythingParamsView: View {
+struct ParamsEverythingView: View {
     @EnvironmentObject var params: AppParams
     @Binding var selectedSource: Int
     var body: some View {
