@@ -11,7 +11,7 @@ import SwiftUI
 struct NewsSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            AppView()
+            OnboardingView()
         }
     }
 }

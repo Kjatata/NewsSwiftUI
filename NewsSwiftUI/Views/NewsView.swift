@@ -10,21 +10,6 @@ import SwiftUI
 import Kingfisher
 import RealmSwift
 
-
-
-class datatype: Object, Identifiable {
-    @objc dynamic var id = UUID().uuidString
-    @objc dynamic var urlToImage = ""
-    @objc dynamic var title = ""
-    @objc dynamic var Objdescription = ""
-    @objc dynamic var publishedAt = ""
-    @objc dynamic var url = ""
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
 struct NewsView: View {
     @State var news: [Article] = []
     @State private var showAlert = false
@@ -47,22 +32,13 @@ struct NewsView: View {
                 Spacer()
                 Button(action: {
                     showAlert = true
-                    do {
-                        let realm = try Realm()
-                        let newdata = datatype()
-                        newdata.urlToImage = post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg"
-                        newdata.title = post.title ?? "no info"
-                        newdata.Objdescription = post.description ?? "no info"
-                        newdata.publishedAt = transformDate(dateP: post.publishedAt ?? "no info")
-                        newdata.url = post.url ?? "https://itransition.by"
-                        try realm.write({
-                            realm.add(newdata)
-                        })
-                        
-                    }
-                    catch {
-                        print(error.localizedDescription)
-                    }
+                    let newdata = DataType()
+                    newdata.urlToImage = post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg"
+                    newdata.title = post.title ?? "no info"
+                    newdata.Objdescription = post.description ?? "no info"
+                    newdata.publishedAt = transformDate(dateP: post.publishedAt ?? "no info")
+                    newdata.url = post.url ?? "https://itransition.by"
+                    DBViewModel().addData(object: newdata)
                 }) {
                     Text("TAP HERE TO ADD IN YOUR NOTES")
                         .font(.system(size: 16))

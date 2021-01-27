@@ -10,7 +10,7 @@ import RealmSwift
 
 class DBViewModel: ObservableObject {
     
-    @Published var notes: [datatype] = []
+    @Published var notes: [DataType] = []
     
     init() {
         fetchData()
@@ -18,11 +18,11 @@ class DBViewModel: ObservableObject {
     
     func fetchData() {
         guard let dbRef = try? Realm() else { return }
-        let results = dbRef.objects(datatype.self)
-        self.notes = results.compactMap({ (note) -> datatype? in return note})
+        let results = dbRef.objects(DataType.self)
+        self.notes = results.compactMap({ (note) -> DataType? in return note})
     }
     
-    func addData(object: datatype) {
+    func addData(object: DataType) {
         guard let dbRef = try? Realm() else { return }
         try? dbRef.write{
             dbRef.add(object)
@@ -30,7 +30,7 @@ class DBViewModel: ObservableObject {
         fetchData()
     }
     
-    func deleteData(object: datatype) {
+    func deleteData(object: DataType) {
         guard let dbRef = try? Realm() else { return }
         try? dbRef.write{
             dbRef.delete(object)

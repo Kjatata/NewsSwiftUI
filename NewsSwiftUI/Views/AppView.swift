@@ -97,7 +97,6 @@ struct AppView: View {
                     VStack(alignment: .leading, content: {
                         MenuButtonView(image: "info", title: "News", selected: $selectedPage, show: $show)
                         MenuButtonView(image: "book", title: "Search", selected: $selectedPage, show: $show)
-                        MenuButtonView(image: "gear", title: "Settings", selected: $selectedPage, show: $show)
                         MenuButtonView(image: "note", title: "Notes", selected: $selectedPage, show: $show)
                     })
                     .padding(.top)
