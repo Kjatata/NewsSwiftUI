@@ -1,5 +1,5 @@
 //
-//  ActivityViewModel.swift
+//  ShareSheet.swift
 //  NewsSwiftUI
 //
 //  Created by User on 27.01.21.
