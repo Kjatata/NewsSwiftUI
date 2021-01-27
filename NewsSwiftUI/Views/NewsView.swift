@@ -18,53 +18,57 @@ struct NewsView: View {
     @EnvironmentObject var params: AppParams
     var type: String
     var body: some View {
-        List(news, id: \.self.description) { (post) in
-            HStack {
-                ButtonSafariView(content: VStack{
-                    KFImage(URL(string: post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg")!)
-                            .loadDiskFileSynchronously()
-                            .cacheMemoryOnly()
-                            .resizable()
-                        .frame(idealHeight: 140)
-                                  
-                    Text(post.title ?? "no info").font(.system(size: 16)).padding(1)
-                    Text(post.description ?? "no info").font(.system(size: 10))
-                    Text(transformDate(dateP: post.publishedAt ?? "no info")).font(.system(size: 13)).padding()
-                }, url: post.url ?? "no info").frame(height: 335)
-                
-                Spacer()
-                ButtonSideView(funct: {() -> () in addData(post: post)},
-                               color: .orange,
-                               text: "TAP HERE TO ADD IN U NOTES")
-                ButtonSideView(funct: showSheet,
-                               color: .green,
-                               text: "TAP HERE SHARE THAT NOTES")
-                    .sheet(isPresented: $showShareSheet) {
-                        ShareSheet(activityItems: [post.url ?? "no url"])
-                    }
+        if news.count > 0 {
+            List(news, id: \.self.description) { (post) in
+                HStack {
+                    ButtonSafariView(content: VStack{
+                        KFImage(URL(string: post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg")!)
+                                .loadDiskFileSynchronously()
+                                .cacheMemoryOnly()
+                                .resizable()
+                            .frame(idealHeight: 140)
+                                      
+                        Text(post.title ?? "no info").font(.system(size: 16)).padding(1)
+                        Text(post.description ?? "no info").font(.system(size: 10))
+                        Text(transformDate(dateP: post.publishedAt ?? "no info")).font(.system(size: 13)).padding()
+                    }, url: post.url ?? "no info").frame(height: 335)
+                    
+                    Spacer()
+                    ButtonSideView(funct: {() -> () in addData(post: post)},
+                                   color: .orange,
+                                   text: "TAP HERE TO ADD IN U NOTES")
+                    ButtonSideView(funct: showSheet,
+                                   color: .green,
+                                   text: "TAP HERE SHARE THAT NOTES")
+                        .sheet(isPresented: $showShareSheet) {
+                            ShareSheet(activityItems: [post.url ?? "no url"])
+                        }
 
-            }.buttonStyle(PlainButtonStyle())
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text(self.alertText))
-            }
+                }.buttonStyle(PlainButtonStyle())
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text(self.alertText))
+                }
 
-        }.onAppear() {
-            if(type == "Top Headlines") {
-                if(params.q == "") {
-                    getNews(url: "https://newsapi.org/v2/top-headlines?country=\(params.country)&category=\(params.category)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
-                        (news) in self.news = news
+            }.onAppear() {
+                if(type == "Top Headlines") {
+                    if(params.q == "") {
+                        getNews(url: "https://newsapi.org/v2/top-headlines?country=\(params.country)&category=\(params.category)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
+                            (news) in self.news = news
+                        }
+                    } else {
+                        getNews(url: "https://newsapi.org/v2/top-headlines?q=\(params.q)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
+                            (news) in self.news = news
+                        }
                     }
                 } else {
-                    getNews(url: "https://newsapi.org/v2/top-headlines?q=\(params.q)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
+                    getNews(url: "https://newsapi.org/v2/everything?q=\(params.q)&sources=\(params.sourse)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
                         (news) in self.news = news
                     }
                 }
-            } else {
-                getNews(url: "https://newsapi.org/v2/everything?q=\(params.q)&sources=\(params.sourse)&apiKey=51ea6b34f2be4e8b819ba235b717cf44") {
-                    (news) in self.news = news
-                }
-            }
-        }.padding()
+            }.padding()
+        } else {
+            Text("You have no news :(")
+        }
     }
     
     func showSheet(){
