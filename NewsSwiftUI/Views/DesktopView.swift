@@ -28,6 +28,8 @@ struct DesktopView: View {
                         Spacer()
                         ButtonSwitchNews()
                         Spacer(minLength: 5)
+                    case "Set Password":
+                        SetPasswordView(selectedPage: $selectedPage)
                     case "Notes":
                         NotesView()
                     default:
@@ -43,4 +45,3 @@ struct DesktopView: View {
     }
     
 }
-

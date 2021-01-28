@@ -15,7 +15,7 @@ class DataType: Object, Identifiable {
     @objc dynamic var Objdescription = ""
     @objc dynamic var publishedAt = ""
     @objc dynamic var url = ""
-        
+    
     override static func primaryKey() -> String? {
         return "id"
     }

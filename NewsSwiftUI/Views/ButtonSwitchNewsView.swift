@@ -17,8 +17,9 @@ struct ButtonSwitchNews: View {
         }.padding()
         .font(.system(size: 14))
         .frame(height: 30)
-        .foregroundColor(.black)
         .clipped()
-        .cornerRadius(6.5)
+        .foregroundColor(.black)
+        .border(Color.black, width: 2)
+        .cornerRadius(3)
     }
 }

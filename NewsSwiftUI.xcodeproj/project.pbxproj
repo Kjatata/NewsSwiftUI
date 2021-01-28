@@ -34,6 +34,9 @@
 		CEC56A2125C2D32400B4CF84 /* ButtonSwitchNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC56A2025C2D32400B4CF84 /* ButtonSwitchNewsView.swift */; };
 		CEC56A2925C2D36D00B4CF84 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC56A2825C2D36D00B4CF84 /* TopBarView.swift */; };
 		CEC56A3125C2D37800B4CF84 /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC56A3025C2D37800B4CF84 /* SideBarView.swift */; };
+		CEC56A4825C2EDAF00B4CF84 /* ButtonSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC56A4725C2EDAF00B4CF84 /* ButtonSimpleView.swift */; };
+		CEC56A4D25C2EDD900B4CF84 /* SetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC56A4C25C2EDD900B4CF84 /* SetPasswordView.swift */; };
+		CEC56A5525C2F8F800B4CF84 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC56A5425C2F8F800B4CF84 /* NotesListView.swift */; };
 		CEC9A27B25C036FA00E255DE /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A27A25C036FA00E255DE /* NotesView.swift */; };
 		CEC9A2C725C03DCD00E255DE /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A2C625C03DCD00E255DE /* Country.swift */; };
 		F4C1441EF86017D9784A7D51 /* Pods_NewsSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8A1B3C298289FA71F5FEBA /* Pods_NewsSwiftUITests.framework */; };
@@ -96,6 +99,9 @@
 		CEC56A2025C2D32400B4CF84 /* ButtonSwitchNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSwitchNewsView.swift; sourceTree = "<group>"; };
 		CEC56A2825C2D36D00B4CF84 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		CEC56A3025C2D37800B4CF84 /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
+		CEC56A4725C2EDAF00B4CF84 /* ButtonSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSimpleView.swift; sourceTree = "<group>"; };
+		CEC56A4C25C2EDD900B4CF84 /* SetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordView.swift; sourceTree = "<group>"; };
+		CEC56A5425C2F8F800B4CF84 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
 		CEC9A27A25C036FA00E255DE /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		CEC9A2C625C03DCD00E255DE /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		E60839792E5D9007CFF9E833 /* Pods_NewsSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,15 +238,18 @@
 				CEAF1F5725BD85FD007FA8FC /* ButtonSafariView.swift */,
 				CE68923B25C1A5E700766B15 /* ButtonSideView.swift */,
 				CEC56A2025C2D32400B4CF84 /* ButtonSwitchNewsView.swift */,
+				CEC56A4725C2EDAF00B4CF84 /* ButtonSimpleView.swift */,
 				CE07407825BC686600CB5135 /* ParamsHeadLinesView.swift */,
 				CE0C9AB525BEFC7800EF4F6F /* ParamsEverythingView.swift */,
 				CE67EAD925C170840098B2E3 /* OnBoardingImagesView.swift */,
 				CE67EAD425C15EC40098B2E3 /* OnboardingView.swift */,
 				CE07405A25BC518900CB5135 /* NewsView.swift */,
 				CEC9A27A25C036FA00E255DE /* NotesView.swift */,
+				CEC56A5425C2F8F800B4CF84 /* NotesListView.swift */,
 				CEC2388825C1AE0E00572A8C /* DesktopView.swift */,
 				CEC56A2825C2D36D00B4CF84 /* TopBarView.swift */,
 				CEC56A3025C2D37800B4CF84 /* SideBarView.swift */,
+				CEC56A4C25C2EDD900B4CF84 /* SetPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,10 +515,13 @@
 				CEC56A3125C2D37800B4CF84 /* SideBarView.swift in Sources */,
 				CE067CB925C14C430009063A /* DBViewModel.swift in Sources */,
 				CE067CC125C153D50009063A /* DataType.swift in Sources */,
+				CEC56A5525C2F8F800B4CF84 /* NotesListView.swift in Sources */,
+				CEC56A4825C2EDAF00B4CF84 /* ButtonSimpleView.swift in Sources */,
 				CEAF1F6025BD86A8007FA8FC /* utils.swift in Sources */,
 				CE07405B25BC518900CB5135 /* NewsView.swift in Sources */,
 				CEC56A2125C2D32400B4CF84 /* ButtonSwitchNewsView.swift in Sources */,
 				CE07407925BC686600CB5135 /* ParamsHeadLinesView.swift in Sources */,
+				CEC56A4D25C2EDD900B4CF84 /* SetPasswordView.swift in Sources */,
 				CE4EC19B25B9722800A441CC /* NewsSwiftUIApp.swift in Sources */,
 				CEC56A2925C2D36D00B4CF84 /* TopBarView.swift in Sources */,
 				CE0C9AB625BEFC7800EF4F6F /* ParamsEverythingView.swift in Sources */,

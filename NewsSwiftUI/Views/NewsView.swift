@@ -16,6 +16,7 @@ struct NewsView: View {
     @State private var alertText = "Note Added"
     @State private var showShareSheet = false
     @EnvironmentObject var params: ParamsViewModel
+    
     var body: some View {
         HStack {
             if news.count > 0 {
@@ -79,6 +80,7 @@ struct NewsView: View {
     }
     
     func addData(post: Article){
+        print("ok")
         let newdata = DataType()
         newdata.urlToImage = post.urlToImage ?? "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10028469.jpg"
         newdata.title = post.title ?? "no info"
@@ -86,6 +88,7 @@ struct NewsView: View {
         newdata.publishedAt = transformDate(dateP: post.publishedAt ?? "no info")
         newdata.url = post.url ?? "https://itransition.by"
         if(!DBViewModel().haveSameObj(object: newdata)) {
+            self.alertText = "Note Added"
             showAlert = true
             DBViewModel().addData(object: newdata)
         } else {

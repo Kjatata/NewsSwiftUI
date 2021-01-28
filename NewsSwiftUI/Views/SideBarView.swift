@@ -28,10 +28,10 @@ struct SideBarView: View {
                             .padding(.top)
                     })
                 }.padding()
-                
                 VStack(alignment: .leading, content: {
                     ButtonMenuView(image: "info", title: "News", selected: $selectedPage, show: $show)
                     ButtonMenuView(image: "book", title: "Search", selected: $selectedPage, show: $show)
+                    ButtonMenuView(image: "checkmark.square", title: "Set Password", selected: $selectedPage, show: $show)
                     ButtonMenuView(image: "note", title: "Notes", selected: $selectedPage, show: $show)
                 })
                 .padding(.top)
