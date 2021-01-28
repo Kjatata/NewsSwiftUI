@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ParamsEverythingView: View {
-    @EnvironmentObject var params: AppParams
+    @EnvironmentObject var params: ParamsViewModel
     @Binding var selectedSource: Int
     var body: some View {
         VStack {

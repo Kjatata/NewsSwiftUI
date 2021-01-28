@@ -10,7 +10,7 @@ import SwiftUI
 struct ParamsHeadLinesView: View {
     @Binding var selectedCountry: Int
     @Binding var selectedCategory: Int
-    @EnvironmentObject var params: AppParams
+    @EnvironmentObject var params: ParamsViewModel
     
     var body: some View {
         VStack {

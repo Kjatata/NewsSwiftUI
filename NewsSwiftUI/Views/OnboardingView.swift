@@ -14,7 +14,7 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             ZStack {
-                ApplicationView()
+                DesktopView()
             }
             .edgesIgnoringSafeArea(.bottom)
             .disabled(showOnBoarding)

@@ -15,8 +15,7 @@ struct NewsView: View {
     @State private var showAlert = false
     @State private var alertText = "Note Added"
     @State private var showShareSheet = false
-    @EnvironmentObject var params: AppParams
-    var type: String
+    @EnvironmentObject var params: ParamsViewModel
     var body: some View {
         HStack {
             if news.count > 0 {
@@ -55,7 +54,7 @@ struct NewsView: View {
             }
             
         }.onAppear() {
-            if(type == "Top Headlines") {
+            if(params.searchTypePage == "Top Headlines") {
                 if(params.q == "") {
                     getNews(url: "https://newsapi.org/v2/top-headlines?country=\(params.country)&category=\(params.category)&apiKey=d0c23a06bb2e4bfaa7cfe0543fc8dc59") {
                         (news) in self.news = news
