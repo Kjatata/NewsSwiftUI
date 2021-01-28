@@ -8,6 +8,7 @@
 import SwiftUI
 
 func getNews(url: String, completion: @escaping ([Article]) -> ()) {
+    print("Hello")
     guard let url = URL(string: url) else { return }
     URLSession.shared.dataTask(with: url) { (data, _, error ) in
         guard let data = data else { return }
@@ -17,6 +18,7 @@ func getNews(url: String, completion: @escaping ([Article]) -> ()) {
             DispatchQueue.main.async {
                 completion(v.articles)
             }
+            print(v.articles)
         } catch {
             print(error)
         }
